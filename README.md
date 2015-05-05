@@ -16,7 +16,7 @@ INTRODUCTION
 
   3. Run Mule project as Mule App
   
-  4. From the browser type 'HTTP://localhost:8081/'
+  4. From the browser type 'HTTP://localhost:8081/wf'
   
 
 HOW IT WORKS:

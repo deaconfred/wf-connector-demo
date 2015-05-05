@@ -14,6 +14,11 @@ INTRODUCTION
   2. Include the wf-connector in a Mule project and complete the system properties. 
      Include an HTTP endpoint using port 8081.
 
+  3. Run Mule project as Mule App
+  
+  4. From the browser type 'HTTP://localhost:8081/'
+  
+
 HOW IT WORKS:
    - The connector logs into WorkFront based on the system properties
    - Hours logged to projects are retrieved and returned in a JSON Array.

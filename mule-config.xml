@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:batch="http://www.mulesoft.org/schema/mule/batch" xmlns:wf-hour="http://www.mulesoft.org/schema/mule/wf-hour" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:wf="http://www.mulesoft.org/schema/mule/wf" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/wf http://www.mulesoft.org/schema/mule/wf/current/mule-wf.xsd
+http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
+http://www.mulesoft.org/schema/mule/wf-hour http://www.mulesoft.org/schema/mule/wf-hour/current/mule-wf-hour.xsd
+http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd">
+    <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
+    <wf:config-type name="WF__Configuration_type_strategy" doc:name="WF: Configuration type strategy"/>
+    <wf-hour:config-type name="WFHour__Configuration_type_strategy" doc:name="WFHour: Configuration type strategy"/>
+    <flow name="wfFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/wf" doc:name="HTTP"/>
+        <expression-filter expression="#[payload != '/favicon.ico']" doc:name="Filter Favicon.ico"/>
+        <wf:retrieve-hours config-ref="WF__Configuration_type_strategy" passWord="Banana999" urlName="https://bcg.attask-ondemand.com/attask/api" userID="pzaehringer@artisang.com" doc:name="WF"/>
+    </flow>
+</mule>

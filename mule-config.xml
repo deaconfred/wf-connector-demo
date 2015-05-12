@@ -15,7 +15,7 @@ http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/ba
     <wf-hour:config-type name="WFHour__Configuration_type_strategy" doc:name="WFHour: Configuration type strategy"/>
     <flow name="wfFlow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/wf" doc:name="HTTP"/>
-        <expression-filter expression="#[payload != '/favicon.ico']" doc:name="Filter Favicon.ico"/>
-        <wf:retrieve-hours config-ref="WF__Configuration_type_strategy" passWord="Banana999" urlName="https://bcg.attask-ondemand.com/attask/api" userID="pzaehringer@artisang.com" doc:name="WF"/>
+        <expression-filter expression="#[payload != '/favicon.ico']" doc:name="Filter favicon"/>
+        <wf:retrieve-hours config-ref="WF__Configuration_type_strategy" dateVar="#[message.inboundProperties['http.query.params'].fromdate]" passWord="Banana999" projectVar="#[message.inboundProperties['http.query.params'].project]" urlName="https://bcg.attask-ondemand.com/attask/api" userID="pzaehringer@artisang.com" doc:name="WF"/>
     </flow>
 </mule>
